@@ -4,7 +4,7 @@
   <!ENTITY author    "ich777">
   <!ENTITY version   "2021.09.28">
   <!ENTITY gitURL    "https://github.com/&author;/unraid-&name;/releases/download">
-  <!ENTITY pluginURL "&gitURL;/&name;.plg">
+  <!ENTITY pluginURL "https://raw.githubusercontent.com/&author;/unraid-&name;/master/&name;.plg">
   <!ENTITY md5       "a0a2884dd2741fa6435ab1661700d432">
   <!ENTITY plugin    "/boot/config/plugins/&name;">
   <!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
