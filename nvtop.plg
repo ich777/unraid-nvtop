@@ -1,0 +1,79 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN [
+  <!ENTITY name      "nvtop">
+  <!ENTITY author    "ich777">
+  <!ENTITY version   "2021.09.28">
+  <!ENTITY gitURL    "https://github.com/&author;/unraid-&name;/releases/download">
+  <!ENTITY pluginURL "&gitURL;/&name;.plg">
+  <!ENTITY md5       "a0a2884dd2741fa6435ab1661700d432">
+  <!ENTITY plugin    "/boot/config/plugins/&name;">
+  <!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
+]>
+
+<PLUGIN  name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.9.0" support="https://forums.unraid.net/topic/98978-plugin-nvidia-driver/">
+
+<CHANGES>
+
+###2021.09.21
+- Bumped version to latest master branch from 2021.09.21
+- Various fixes, thanks to Michaël Ferrand
+
+###2021.07.03
+- Initial release
+
+</CHANGES>
+
+<FILE Run="/bin/bash">
+<INLINE>
+rm -f $(ls /boot/config/plugins/&name;/&name;*.txz 2>/dev/null|grep -v '&version;')
+</INLINE>
+</FILE>
+
+<FILE Name="/boot/config/plugins/&name;/&name;-&version;.tgz" Run="upgradepkg --install-new">
+<URL>&gitURL;/&version;/&name;-&version;.tgz</URL>
+<MD5>&md5;</MD5>
+</FILE>
+
+<FILE Name="&emhttp;/README.md">
+<INLINE>
+**NVTOP**
+  
+Nvtop stands for NVidia TOP, a (h)top like task monitor for NVIDIA GPUs. It can handle multiple GPUs and print information about them in a htop familiar way.  
+This Plugin is based on: https://github.com/Syllo/nvtop
+</INLINE>
+</FILE>
+
+<FILE Run="/bin/bash">
+<INLINE>
+
+if [ ! -d /boot/config/plugins/nvidia-driver ]; then
+  echo "---ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR ---"
+  echo "---Nvidia Driver plugin not found, please install the Nvidia Driver plugin first!---"
+  echo "---ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR ---"
+  removepkg &name;-&version; 2>/dev/null
+  rm -rf &emhttp;
+  rm -rf &plugin;
+fi
+
+</INLINE>
+</FILE>
+
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+
+echo "------------------------"
+echo "---Uninstalling NVTOP---"
+echo "------------------------"
+# Remove plugin related files
+removepkg &name;-&version;
+rm -rf &emhttp;
+rm -rf &plugin;
+echo
+echo "---------------------------------------"
+echo "---Uninstallation of NVTOP complete!---"
+echo "---------------------------------------"
+echo
+
+</INLINE>
+</FILE>
+</PLUGIN>
