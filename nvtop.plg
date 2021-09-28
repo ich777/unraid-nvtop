@@ -14,12 +14,8 @@
 
 <CHANGES>
 
-###2021.09.21
-- Bumped version to latest master branch from 2021.09.21
-- Various fixes, thanks to Michaël Ferrand
-
-###2021.07.03
-- Initial release
+###2021.09.28
+- Initial release based on NVTOP v1.2.2
 
 </CHANGES>
 
@@ -38,7 +34,7 @@ rm -f $(ls /boot/config/plugins/&name;/&name;*.txz 2>/dev/null|grep -v '&version
 <INLINE>
 **NVTOP**
   
-Nvtop stands for NVidia TOP, a (h)top like task monitor for NVIDIA GPUs. It can handle multiple GPUs and print information about them in a htop familiar way.  
+Nvtop stands for NVidia TOP, a (h)top like task monitor for NVIDIA GPUs for the CLI. It can handle multiple GPUs and print information about them in a htop familiar way.  
 This Plugin is based on: https://github.com/Syllo/nvtop
 </INLINE>
 </FILE>
