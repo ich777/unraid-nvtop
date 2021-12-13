@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name      "nvtop">
   <!ENTITY author    "ich777">
-  <!ENTITY version   "2021.09.28">
+  <!ENTITY version   "2021.12.13">
   <!ENTITY gitURL    "https://github.com/&author;/unraid-&name;/releases/download">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/&author;/unraid-&name;/master/&name;.plg">
   <!ENTITY md5       "a0a2884dd2741fa6435ab1661700d432">
@@ -13,6 +13,9 @@
 <PLUGIN  name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.9.0" support="https://forums.unraid.net/topic/98978-plugin-nvidia-driver/">
 
 <CHANGES>
+
+###2021.12.13
+- Added exit status if Nvidia Driver plugin is not found - thank you for the heads up Squid
 
 ###2021.09.28
 - Initial release based on NVTOP v1.2.2
@@ -49,6 +52,7 @@ if [ ! -d /boot/config/plugins/nvidia-driver ]; then
   removepkg &name;-&version; 2>/dev/null
   rm -rf &emhttp;
   rm -rf &plugin;
+  exit 1
 fi
 
 </INLINE>
