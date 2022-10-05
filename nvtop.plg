@@ -2,10 +2,10 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name      "nvtop">
   <!ENTITY author    "ich777">
-  <!ENTITY version   "2022.08.26">
+  <!ENTITY version   "2022.10.02">
   <!ENTITY gitURL    "https://github.com/&author;/unraid-&name;/releases/download">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/&author;/unraid-&name;/master/&name;.plg">
-  <!ENTITY md5       "725c1d49a8ebc6a1cd933a3ff6f6e9e1">
+  <!ENTITY md5       "c764abe99dae86a5a0a012a4494d26eb">
   <!ENTITY plugin    "/boot/config/plugins/&name;">
   <!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
 ]>
@@ -13,6 +13,9 @@
 <PLUGIN  name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.9.0" support="https://forums.unraid.net/topic/98978-plugin-nvidia-driver/">
 
 <CHANGES>
+
+###2022.10.02
+- Bumped version - based on NVTOP v2.0.4
 
 ###2022.08.26
 - Bumped version - based on NVTOP v2.0.3
