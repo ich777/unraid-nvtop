@@ -2,10 +2,9 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name      "nvtop">
   <!ENTITY author    "ich777">
-  <!ENTITY version   "2022.11.06">
+  <!ENTITY version   "2023.03.06">
   <!ENTITY gitURL    "https://github.com/&author;/unraid-&name;/releases/download">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/&author;/unraid-&name;/master/&name;.plg">
-  <!ENTITY md5       "3eb58eb76e2e70f53fca0626dd31dbb8">
   <!ENTITY plugin    "/boot/config/plugins/&name;">
   <!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
 ]>
@@ -13,6 +12,10 @@
 <PLUGIN  name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.9.0" support="https://forums.unraid.net/topic/98978-plugin-nvidia-driver/">
 
 <CHANGES>
+
+###2023.03.06
+- Added support for AMD and Intel GPUs/iGPUs to the plugin
+- Changed README.md
 
 ###2022.10.02
 - Bumped version - based on NVTOP v3.0.1
@@ -52,7 +55,7 @@ rm -f $(ls /boot/config/plugins/&name;/&name;*.tgz 2>/dev/null|grep -v '&version
 <INLINE>
 **NVTOP**
   
-Nvtop stands for NVidia TOP, a (h)top like task monitor for NVIDIA GPUs for the CLI. It can handle multiple GPUs and print information about them in a htop familiar way.  
+NVTOP stands for Neat Videocard TOP, a (h)top like task monitor for AMD, Intel and NVIDIA GPUs. It can handle multiple GPUs and print information about them in a htop familiar way.  
 This Plugin is based on: https://github.com/Syllo/nvtop
 </INLINE>
 </FILE>
@@ -60,10 +63,19 @@ This Plugin is based on: https://github.com/Syllo/nvtop
 <FILE Run="/bin/bash">
 <INLINE>
 
-if [ ! -d /boot/config/plugins/nvidia-driver ]; then
-  echo "---ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR ---"
-  echo "---Nvidia Driver plugin not found, please install the Nvidia Driver plugin first!---"
-  echo "---ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR ---"
+if [ ! -d /boot/config/plugins/radeontop ] || [ ! -d /boot/config/plugins/intel-gpu-top ] || [ ! -d /boot/config/plugins/nvidia-driver ]; then
+  echo "---------------------------------------------------------------------------------------"
+  echo "| ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR"
+  echo "|"
+  echo "| No vendor utility installed! Please install at least on of the following three"
+  echo "| plugins form the CA App that NVTOP (Neat Videocard TOP) is able to work properly:"
+  echo "|"
+  echo "| - Radeon-TOP"
+  echo "| - Intel-GPU-TOP"
+  echo "| - Nvidia-Driver"
+  echo "|"
+  echo "| ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR"
+  echo "---------------------------------------------------------------------------------------"
   removepkg &name;-&version; 2>/dev/null
   rm -rf &emhttp;
   rm -rf &plugin;
