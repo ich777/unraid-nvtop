@@ -64,7 +64,7 @@ This Plugin is based on: https://github.com/Syllo/nvtop
 <FILE Run="/bin/bash">
 <INLINE>
 
-if [ ! -d /boot/config/plugins/radeontop ] || [ ! -d /boot/config/plugins/intel-gpu-top ] || [ ! -d /boot/config/plugins/nvidia-driver ]; then
+if [ ! -d /boot/config/plugins/radeontop ] && [ ! -d /boot/config/plugins/intel-gpu-top ] && [ ! -d /boot/config/plugins/nvidia-driver ]; then
   echo "---------------------------------------------------------------------------------------"
   echo "| ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR - ERROR"
   echo "|"
