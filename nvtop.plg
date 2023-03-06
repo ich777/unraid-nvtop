@@ -14,6 +14,9 @@
 
 <CHANGES>
 
+###2023.03.06a
+- Changed NVTOP package to properly support AMD and Intel GPUs/iGPUs
+
 ###2023.03.06
 - Added support for AMD and Intel GPUs/iGPUs to the plugin
 - Changed README.md
