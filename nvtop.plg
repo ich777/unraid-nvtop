@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name      "nvtop">
   <!ENTITY author    "ich777">
-  <!ENTITY version   "2023.03.06a">
+  <!ENTITY version   "2023.03.23">
   <!ENTITY gitURL    "https://github.com/&author;/unraid-&name;/releases/download">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/&author;/unraid-&name;/master/&name;.plg">
   <!ENTITY md5       "9808fdbf962ff61d3a13524ac22360e8"> 
@@ -13,6 +13,9 @@
 <PLUGIN  name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.9.0" support="https://forums.unraid.net/topic/98978-plugin-nvidia-driver/">
 
 <CHANGES>
+
+###2023.03.23
+- Made configuration persistent
 
 ###2023.03.06a
 - Changed NVTOP package to properly support AMD and Intel GPUs/iGPUs
@@ -84,6 +87,13 @@ if [ ! -d /boot/config/plugins/radeontop ] &amp;&amp; [ ! -d /boot/config/plugin
   rm -rf &emhttp;
   rm -rf &plugin;
   exit 1
+fi
+
+if [ ! -L /root/.config/nvtop/interface.ini ]; then
+  if [ ! -d /root/.config/nvtop ]; then
+    mkdir -p /root/.config/nvtop
+  fi
+  ln -s &plugin;/interface.ini /root/.config/nvtop/interface.ini
 fi
 
 </INLINE>
